@@ -1,0 +1,9 @@
+npm install react-icons
+npm install styled-components
+npm install react-scripts@5.0.1
+npm install react-router-dom
+
+
+
+#para rodar no pages do github
+npm install gh-pages --save-dev 
