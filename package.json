@@ -2,7 +2,6 @@
   "name": "dio-react-cli",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://github.com/codeguima/dio-react-cli",
   "dependencies": {
     "component": "^0.19.9",
     "cra-template": "1.2.0",
