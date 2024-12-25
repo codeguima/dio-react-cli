@@ -9,7 +9,7 @@ import logo from '../../assets/hero-image.png';
 
 const Feed = () => {
     return(<>
-        <Header />
+        <Header autenticado={true}/>
             <Container>
                 <Column flex ={3}>
                     <Title>Feed</Title>

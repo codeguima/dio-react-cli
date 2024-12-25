@@ -8,10 +8,11 @@ import {
     Menu, 
     MenuRight, 
     Row, 
-    Wrapper 
+    Wrapper ,
+    UserPicture
 } from './styles';
 
-const Header = () => {
+const Header = ({autenticado}) => {
   return (
     <Wrapper>
         <Container>
@@ -19,16 +20,26 @@ const Header = () => {
                 <img src={logo} alt="Logo da Dio"
                 style={{ width: '60px', height: 'auto' }} 
                  />
-                <BuscarInputContainer>
+                 {autenticado ? (
+                    <>
+                    <BuscarInputContainer>
                     <Input placeholder="Buscar..." />
-                </BuscarInputContainer>
-                <Menu>Live Code</Menu>
-                <Menu>Global</Menu>
+                    </BuscarInputContainer>
+                    <Menu>Live Code</Menu>
+                    <Menu>Global</Menu>
+                    </>
+                 ) : null}
             </Row>
             <Row>
-                <MenuRight href="/home">Home</MenuRight>
-                <Button title="Entrar" />
-                <Button title="Cadastrar" />
+                 {autenticado ? (
+                    <UserPicture src ="https://avatars.githubusercontent.com/u/111026602?v=4" />
+                 ) : (
+                    <>
+                    <MenuRight href="/home">Home</MenuRight>
+                    <Button title="Entrar" />
+                    <Button title="Cadastrar" />
+                    </>
+                 )}
             </Row>
         </Container>
     </Wrapper>

@@ -26,7 +26,7 @@ const Card = () => {
                     </div>
             </UserInfo>
             <PostInfo>
-                <h4>Projeto parao curso de Html e Css</h4>
+                <h4>Projeto para o curso de React Developer</h4>
                 <p>Projeto feito o curso de html e css no bootcamp dio global...<strong>Saiba Mais</strong></p>
             </PostInfo>
             <HasInfo>
