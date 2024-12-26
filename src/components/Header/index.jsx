@@ -14,8 +14,6 @@ import {
 } from './styles';
 
 
-
-
 const Header = ({autenticado}) => {
 
   const navigate = useNavigate();
