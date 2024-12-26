@@ -1,7 +1,7 @@
 
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import { MdEmail, MdLock } from 'react-icons/md';
+import { MdEmail, MdLock, MdPerson, MdPhone } from 'react-icons/md';
 import { Button } from '../../components/Button/index';
 import { Header } from '../../components/Header/index';
 import { Input } from '../../components/Input/index';
@@ -14,11 +14,13 @@ import { api } from '../../config/axios';
 const schema = yup.object({
     email: yup.string().email('E-mail não é válido').required('Campo Obrigatório'),
     password: yup.string().min(3, 'No mínimo 3 caracteres').required('Campo Obrigatório'),
+    phone: yup.string().min(10, 'No mínimo 10 caracteres').required(),
+    name: yup.string().min(10, 'No mínimo 10 caracteres').required(),
 }).required();
 
 
 
-const Login = () => {
+const Cadastro = () => {
     const navigate = useNavigate();
 
     const { control, handleSubmit, formState: { errors, isValid } } = useForm({
@@ -35,7 +37,7 @@ const Login = () => {
             const { data } = await api.get(`/users?email=${formData.email}&senha=${formData.password}`,
                 {headers: { 'Content-Type': 'application/json' }
             });
-
+            
 
             if (data.length === 1) {
                 handleClickSignIn(); // Redireciona para o feed
@@ -51,10 +53,14 @@ const Login = () => {
     const handleClickSignIn = () => {
         navigate('/feed');
     };
-
-    const handleClickCadastro = () => {
-        navigate('/cadastro');
+    const handleClickLogin = () => {
+        navigate('/login');
     };
+    const handleClickHome = () => {
+        navigate('/home');
+    };
+
+
 
     return (
         <>
@@ -69,14 +75,29 @@ const Login = () => {
                 <Column>
                     <Wrapper>
                         <TitleLogin>Faça seu cadastro</TitleLogin>
-                        <SubtitleLogin>Faça seu Login</SubtitleLogin>
+                        <SubtitleLogin>Preencha seu dados:</SubtitleLogin>
                         <form onSubmit={handleSubmit(onSubmit)}>
+                            <Input
+                                name="name"
+                                control={control}
+                                placeholder="Nome"
+                                leftIcon={<MdPerson />}
+                                errorMessage={errors?.name?.message}
+                            />
                             <Input
                                 name="email"
                                 control={control}
-                                placeholder="E-mail"
+                                placeholder="Seu melhor E-mail"
+                                type="email"
                                 leftIcon={<MdEmail />}
-                                errorMessage={errors?.email?.message}
+                                errorMessage={errors?.email?.message} 
+                            />
+                            <Input
+                                name="phone"
+                                control={control}
+                                placeholder="+55(99)99999-9999"
+                                leftIcon={<MdPhone />}
+                                errorMessage={errors?.phone?.message}
                             />
                             <Input
                                 name="password"
@@ -86,11 +107,11 @@ const Login = () => {
                                 leftIcon={<MdLock />}
                                 errorMessage={errors?.password?.message} 
                             />
-                            <Button title="Entrar" variant="secondary" type="submit" />
+                            <Button title="Criar" variant="secondary" type="submit" />
                         </form>
                         <Row>
-                            <EsqueciText>Esqueci minha senha</EsqueciText>
-                            <CriarText onClick={handleClickCadastro}>Criar conta</CriarText>
+                            <EsqueciText onClick={handleClickHome}>voltar</EsqueciText>
+                            <CriarText onClick={handleClickLogin} >Fazer Login</CriarText>
                         </Row>
                     </Wrapper>
                 </Column>
@@ -99,4 +120,4 @@ const Login = () => {
     );
 };
 
-export { Login };
+export { Cadastro };
