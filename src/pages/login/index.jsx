@@ -7,7 +7,7 @@ import { Header } from '../../components/Header/index';
 import { Input } from '../../components/Input/index';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
-
+import { api } from '../../services/api.js';
 import { Column, Container, CriarText, EsqueciText, Row, SubtitleLogin, Title, TitleLogin, Wrapper } from './styles';
 
 const schema = yup.object({
@@ -25,11 +25,21 @@ const Login = () => {
 
     console.log(isValid, errors);
 
-    const onSubmit = data => {
-        console.log(data);
-        handleClickSignIn(); // Redirecionar após login bem-sucedido
+    const onSubmit = async formData => {
+        try {
+            const { data } = await api.get(`/users?email=${formData.email}&senha=${formData.password}`);
+            
+            if (data.length === 1) {
+                handleClickSignIn(); // Redireciona para o feed
+            } else {
+                alert('E-mail ou senha incorretos');
+            }
+        } catch (error) {
+            console.error('Erro na requisição:', error);
+            alert('Houve um erro, tente novamente');
+        }
     };
-
+    
     const handleClickSignIn = () => {
         navigate('/feed');
     };
