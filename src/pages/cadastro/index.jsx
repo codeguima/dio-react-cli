@@ -26,14 +26,14 @@ const Cadastro = () => {
 
     const onSubmit = async formData => {
         try {
-            // Verificar se o e-mail já está cadastrado
+            
             const { data: existingUser } = await api.get(`/users?email=${formData.email}`);
             if (existingUser.length > 0) {
                 alert('Este e-mail já está cadastrado!');
-                return; // Não cria o novo usuário
+                return; 
             }
 
-            // Se o e-mail não existir, cria um novo usuário
+            
             const { data } = await api.post('/users', {
                 name: formData.name,
                 email: formData.email,
@@ -41,7 +41,7 @@ const Cadastro = () => {
                 password: formData.password
             });
 
-            // Se a criação for bem-sucedida, redireciona para a página de login
+           
             alert('Cadastro realizado com sucesso!');
             navigate('/login');
         } catch (error) {
@@ -107,7 +107,7 @@ const Cadastro = () => {
                         </form>
                         <Row>
                             <EsqueciText onClick={handleClickHome}>voltar</EsqueciText>
-                            <CriarText onClick={handleClickLogin} >Fazer Login</CriText>
+                            <CriarText onClick={handleClickLogin} >Fazer Login</CriarText>
                         </Row>
                     </Wrapper>
                 </Column>

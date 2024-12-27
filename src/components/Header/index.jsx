@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '../Button';
 import logo from '../../assets/logo.png';
+import hero from '../../assets/hero-image.png';
+
 import { 
     BuscarInputContainer, 
     Container, 
@@ -47,7 +49,7 @@ const Header = ({autenticado}) => {
         <Row>
           {autenticado ? (
             <>
-              <UserPicture src="https://avatars.githubusercontent.com/u/111026602?v=4" />
+              <UserPicture src={hero} />
               <br />
               <Button title="Sair" onClick={handleClickLogin} /> {/* Botão de logout */}
             </>

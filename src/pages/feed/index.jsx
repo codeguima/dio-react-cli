@@ -5,7 +5,9 @@ import { Card } from '../../components/Card/index';
 import { UserInfo } from '../../components/UserInfo/index'
 
 import { Container, Column, Title, TitleHighlight } from './styles';
-import logo from '../../assets/hero-image.png';
+import hero from '../../assets/hero-image.png';
+
+
 
 const Feed = () => {
     return(<>
@@ -22,11 +24,11 @@ const Feed = () => {
                 </Column>
                 <Column flex={1}>
                     <TitleHighlight># RANKING 5 TOP DA SEMANA</TitleHighlight>
-                    <UserInfo percentual={80} nome="jhonny g." image="https://avatars.githubusercontent.com/u/111026602?v=4" />
-                    <UserInfo percentual={40} nome=" USER 2." image={logo} />
-                    <UserInfo percentual={60} nome=" USER 3." image={logo} />
-                    <UserInfo percentual={30} nome=" USER 4." image={logo} />
-                    <UserInfo percentual={15} nome=" USER 5." image={logo} />
+                    <UserInfo percentual={80} nome=" USER 1"  image={hero} />
+                    <UserInfo percentual={40} nome=" USER 2." image={hero} />
+                    <UserInfo percentual={60} nome=" USER 3." image={hero} />
+                    <UserInfo percentual={30} nome=" USER 4." image={hero} />
+                    <UserInfo percentual={15} nome=" USER 5." image={hero} />
                 </Column>
         </Container>
     </>)
