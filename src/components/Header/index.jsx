@@ -13,30 +13,21 @@ import {
     UserPicture 
 } from './styles';
 
-const Header = () => {
+const Header = ({autenticado}) => {
   const navigate = useNavigate();
-  // Supondo que a autenticação seja salva no localStorage
-  const [autenticado, setAutenticado] = useState(localStorage.getItem('auth') === 'true');
-
-  // Função para login
   const handleClickLogin = () => {
     navigate('/login');
   };
 
-  // Função para cadastro
+ 
   const handleClickCadastro = () => {
     navigate('/cadastro');
   };
 
-  // Função de logout
-  const handleLogout = () => {
-    // Remove a informação de autenticação do localStorage
-    localStorage.removeItem('auth');
-    // Atualiza o estado para indicar que o usuário não está mais autenticado
-    setAutenticado(false);
-    // Redireciona o usuário para a página inicial ou login
-    navigate('/login');
-  };
+ 
+
+
+
 
   return (
     <Wrapper>
@@ -57,7 +48,8 @@ const Header = () => {
           {autenticado ? (
             <>
               <UserPicture src="https://avatars.githubusercontent.com/u/111026602?v=4" />
-              <Button title="Sair" onClick={handleLogout} /> {/* Botão de logout */}
+              <br />
+              <Button title="Sair" onClick={handleClickLogin} /> {/* Botão de logout */}
             </>
           ) : (
             <>
