@@ -1,3 +1,5 @@
+// style.ts
+
 import styled from "styled-components";
 
 export const Container = styled.main`
@@ -9,7 +11,7 @@ export const Container = styled.main`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-itmes: center;
+    align-items: center;  // Corrigido 'align-itmes' para 'align-items'
 `;
 
 export const Wrapper = styled.div`
@@ -24,7 +26,7 @@ export const Row = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-itmes: center;
+    align-items: center;  // Corrigido 'align-itmes' para 'align-items'
     margin-top: 20px;
 `;
 
@@ -39,7 +41,6 @@ export const Title = styled.h2`
 
     color: #ffffff;
 `;
-
 
 export const TitleLogin = styled.p`
     font-family: 'Open Sans';
@@ -68,8 +69,8 @@ export const EsqueciText = styled.p`
 
     color: #e5e044;
 
-    &:hover{
-        opacity:0.6;
+    &:hover {
+        opacity: 0.6;
         cursor: pointer;
     }
 `;
@@ -83,8 +84,8 @@ export const CriarText = styled.p`
 
     color: #e23dd7;
 
-    &:hover{
-        opacity:0.6;
+    &:hover {
+        opacity: 0.6;
         cursor: pointer;
     }
 `;

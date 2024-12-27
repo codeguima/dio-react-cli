@@ -14,7 +14,7 @@ const Home = () => {
     }
     
     return(<>
-        <Header />
+        <Header/>
         <Container>
             <div>
                 <Title>
@@ -31,9 +31,8 @@ const Home = () => {
                 <Button title="Começar agora" variant='secondary' onClick={handleClickSignIn} />
             </div>
             <div>
-                <img src={banner} alt='Imagem Principal'
+                <img src={banner}  alt='Imagem Principal'
                     style={{ width: '500px', height: 'auto' }}
-
                 />
             </div>
         </Container>

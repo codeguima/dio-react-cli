@@ -1,13 +1,23 @@
+// index.tsx
 import { useNavigate } from 'react-router-dom';
-import { useForm } from 'react-hook-form';
+import { useForm, SubmitHandler} from 'react-hook-form'; // Tipagem adicional
 import { MdEmail, MdLock, MdPerson, MdPhone } from 'react-icons/md';
 import { Button } from '../../components/Button/index';
 import { Header } from '../../components/Header/index';
 import { Input } from '../../components/Input/index';
 import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from "yup";
+import * as yup from 'yup';
 import { Column, Container, CriarText, EsqueciText, Row, SubtitleLogin, Title, TitleLogin, Wrapper } from './styles';
 import { api } from '../../config/axios';
+
+
+interface FormData {
+    name: string;
+    email: string;
+    phone: string;
+    password: string;
+}
+
 
 const schema = yup.object({
     email: yup.string().email('E-mail não é válido').required('Campo Obrigatório'),
@@ -16,24 +26,24 @@ const schema = yup.object({
     name: yup.string().min(10, 'No mínimo 10 caracteres').required(),
 }).required();
 
-const Cadastro = () => {
+const Cadastro: React.FC = () => {
     const navigate = useNavigate();
 
-    const { control, handleSubmit, formState: { errors, isValid } } = useForm({
+   
+    const { control, handleSubmit, formState: { errors, isValid } } = useForm<FormData>({
         resolver: yupResolver(schema),
         mode: 'onChange',
     });
 
-    const onSubmit = async formData => {
+    
+    const onSubmit: SubmitHandler<FormData> = async (formData) => {
         try {
-            
             const { data: existingUser } = await api.get(`/users?email=${formData.email}`);
             if (existingUser.length > 0) {
                 alert('Este e-mail já está cadastrado!');
-                return; 
+                return;
             }
 
-            
             const { data } = await api.post('/users', {
                 name: formData.name,
                 email: formData.email,
@@ -41,7 +51,6 @@ const Cadastro = () => {
                 password: formData.password
             });
 
-           
             alert('Cadastro realizado com sucesso!');
             navigate('/login');
         } catch (error) {
@@ -60,7 +69,7 @@ const Cadastro = () => {
 
     return (
         <>
-            <Header />
+            <Header/>
             <Container>
                 <Column>
                     <Title>
@@ -103,11 +112,11 @@ const Cadastro = () => {
                                 leftIcon={<MdLock />}
                                 errorMessage={errors?.password?.message} 
                             />
-                            <Button title="Criar" variant="secondary" type="submit" />
+                            <Button title="Criar" variant="secondary" type="submit" disabled={!isValid} />
                         </form>
                         <Row>
                             <EsqueciText onClick={handleClickHome}>voltar</EsqueciText>
-                            <CriarText onClick={handleClickLogin} >Fazer Login</CriarText>
+                            <CriarText onClick={handleClickLogin}>Fazer Login</CriarText>
                         </Row>
                     </Wrapper>
                 </Column>

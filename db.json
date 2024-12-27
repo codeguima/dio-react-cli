@@ -2,22 +2,10 @@
   "users": [
     {
       "id": "1",
-      "nome": "Jhonny",
+      "name": "Jhonny",
       "email": "jg@gmail.com",
-      "senha": "123456"
-    },
-    {
-      "id": "2",
-      "nome": "Pedro",
-      "email": "plara@gmail.com",
-      "senha": "123456"
-    },
-    {
-      "id": "205e",
-      "name": "joão silva",
-      "email": "joao@gmail.com",
-      "phone": "41998252646",
       "password": "123456"
     }
+   
   ]
 }

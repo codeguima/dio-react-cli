@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
+// Estilo para o container do card
 export const CardContainer = styled.div`
     width: 100%;
     background-color: #3b4651; /* Cor de fundo do container */
@@ -7,20 +8,22 @@ export const CardContainer = styled.div`
     margin-bottom: 24px;
 `;
 
+// Estilo para a imagem de fundo
 export const ImageBackground = styled.img`
     width: 100%;
     height: 180px;
 `;
 
+// Estilo para o conteúdo do card
 export const Content = styled.div`
     width: 100%;
     display: flex;
     flex-direction: column;
     padding: 12px;
     color: #ffffff80; /* Cor do texto */
-    
 `;
 
+// Estilo para a seção de informações do usuário
 export const UserInfo = styled.div`
     display: flex;
     flex-direction: row;
@@ -49,6 +52,7 @@ export const UserInfo = styled.div`
     }
 `;
 
+// Estilo para a imagem de perfil do usuário
 export const UserPicture = styled.img`
     width: 32px;
     height: 32px;
@@ -56,6 +60,7 @@ export const UserPicture = styled.img`
     border: 3px solid #ffffff;
 `;
 
+// Estilo para as informações do post
 export const PostInfo = styled.div`
     margin-bottom: 12px;
 
@@ -77,6 +82,7 @@ export const PostInfo = styled.div`
     }
 `;
 
+// Estilo para as hashtags e likes
 export const HasInfo = styled.div`
     margin-bottom: 12px;
 

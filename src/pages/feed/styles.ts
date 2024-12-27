@@ -1,4 +1,8 @@
-import styled from "styled-components";
+import styled from 'styled-components';
+
+interface ColumnProps {
+    flex: number;
+  }
 
 export const Container = styled.main`
     width: 100%;
@@ -22,18 +26,16 @@ export const Title = styled.h3`
 `;
 
 export const TitleHighlight = styled.h3`
-    font-family: "Open Sans";
+    font-family: 'Open Sans';
     font-style: normal;
     font-weight: 700;
     font-size: 18px;
     line-height: 25px;
     color: #ffffff70;
-    margin-botton: 24px;
-
+    margin-bottom: 24px; /* Corrigido */
 `;
 
-
-export const Column = styled.div`
-    flex:${({flex}) => flex};
-    padding-right: 24px;
+export const Column = styled.div<ColumnProps>`
+  flex: ${({ flex }) => flex};
+  padding-right: 24px;
 `;

@@ -1,9 +1,10 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '../Button';
+import { useContext } from 'react';
+import { AuthContext } from '../../context/auth';
 import logo from '../../assets/logo.png';
 import hero from '../../assets/hero-image.png';
-
 import { 
     BuscarInputContainer, 
     Container, 
@@ -15,28 +16,36 @@ import {
     UserPicture 
 } from './styles';
 
-const Header = ({autenticado}) => {
+
+const Header = () => {
   const navigate = useNavigate();
+
+  const { user } = useContext(AuthContext);
+
+
   const handleClickLogin = () => {
     navigate('/login');
   };
 
- 
   const handleClickCadastro = () => {
     navigate('/cadastro');
   };
 
- 
-
-
-
+  const handleClickConta = () => {
+    navigate('/feed');
+  };
 
   return (
     <Wrapper>
       <Container>
         <Row>
-          <img src={logo} alt="Logo da Dio" style={{ width: '60px', height: 'auto' }} />
-          {autenticado ? (
+          <Link to='/home'>
+          <img src={logo} 
+              alt="Imagem" 
+              style={{ width: '60px', height: 'auto' }} 
+          />
+          </Link>
+          {user.id ? (
             <>
               <BuscarInputContainer>
                 <Input placeholder="Buscar..." />
@@ -47,11 +56,12 @@ const Header = ({autenticado}) => {
           ) : null}
         </Row>
         <Row>
-          {autenticado ? (
+          {user.id ? (
             <>
-              <UserPicture src={hero} />
+              <UserPicture src= {hero} />
               <br />
-              <Button title="Sair" onClick={handleClickLogin} /> {/* Botão de logout */}
+                <Button title="Minha Conta" onClick={handleClickConta} />
+                <Button title="Sair" onClick={handleClickLogin} />
             </>
           ) : (
             <>

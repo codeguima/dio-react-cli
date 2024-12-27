@@ -1,7 +1,6 @@
-
-import React from 'react'
+import React from 'react';
 import { FiThumbsUp } from 'react-icons/fi';
-import bannerImg from '../../assets/banner2.jpg';
+import banner from '../../assets/banner2.jpg';
 
 import {
     CardContainer,
@@ -13,17 +12,17 @@ import {
     UserPicture
 } from './styles';
 
-const Card = () => {
+const Card: React.FC = () => {
   return (
     <CardContainer>
-        <ImageBackground src={bannerImg}/>
-            <Content>
+        <ImageBackground src={banner} alt="Banner" />
+        <Content>
             <UserInfo>
-                <UserPicture src="https://avatars.githubusercontent.com/u/111026602?v=4"/>
-                    <div>
-                        <h4>Jhonny Guimarães</h4>
-                        <p>Há 8 minutos</p>
-                    </div>
+                <UserPicture src="https://avatars.githubusercontent.com/u/111026602?v=4" alt="User Picture"/>
+                <div>
+                    <h4>Jhonny Guimarães</h4>
+                    <p>Há 8 minutos</p>
+                </div>
             </UserInfo>
             <PostInfo>
                 <h4>Projeto para o curso de React Developer</h4>
@@ -35,9 +34,9 @@ const Card = () => {
                     <FiThumbsUp /> 10
                 </p>
             </HasInfo>
-            </Content>
+        </Content>
     </CardContainer>
-  )
+  );
 };
 
-export {Card};
+export { Card };
