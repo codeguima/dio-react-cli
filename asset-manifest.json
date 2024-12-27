@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.js": "/codeguima/dio-react-cli/static/js/main.6221e642.js",
+    "static/media/banner2.jpg": "/codeguima/dio-react-cli/static/media/banner2.883ba38c780859efa27d.jpg",
+    "static/media/logo.png": "/codeguima/dio-react-cli/static/media/logo.5c19828560a5b33db03c.png",
+    "static/media/hero-image.png": "/codeguima/dio-react-cli/static/media/hero-image.02272b1b8547c727dd2c.png",
+    "static/media/banner.png": "/codeguima/dio-react-cli/static/media/banner.85b61a89ca76bab12273.png",
+    "index.html": "/codeguima/dio-react-cli/index.html",
+    "main.6221e642.js.map": "/codeguima/dio-react-cli/static/js/main.6221e642.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.6221e642.js"
+  ]
+}
