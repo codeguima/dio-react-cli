@@ -2,6 +2,7 @@
   "name": "dio-react-cli",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://github.com/codeguima/dio-react-cli",
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
     "axios": "^1.7.9",
