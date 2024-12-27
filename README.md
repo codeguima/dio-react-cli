@@ -1,1 +1,0 @@
-## desenvolvimento de projetos React com DIO.me
