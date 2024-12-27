@@ -1,4 +1,3 @@
-
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { MdEmail, MdLock, MdPerson, MdPhone } from 'react-icons/md';
@@ -10,15 +9,12 @@ import * as yup from "yup";
 import { Column, Container, CriarText, EsqueciText, Row, SubtitleLogin, Title, TitleLogin, Wrapper } from './styles';
 import { api } from '../../config/axios';
 
-
 const schema = yup.object({
     email: yup.string().email('E-mail não é válido').required('Campo Obrigatório'),
     password: yup.string().min(3, 'No mínimo 3 caracteres').required('Campo Obrigatório'),
     phone: yup.string().min(10, 'No mínimo 10 caracteres').required(),
     name: yup.string().min(10, 'No mínimo 10 caracteres').required(),
 }).required();
-
-
 
 const Cadastro = () => {
     const navigate = useNavigate();
@@ -28,39 +24,32 @@ const Cadastro = () => {
         mode: 'onChange',
     });
 
-    console.log(isValid, errors);
-
     const onSubmit = async formData => {
-
         try {
-
-            const { data } = await api.get(`/users?email=${formData.email}&senha=${formData.password}`,
-                {headers: { 'Content-Type': 'application/json' }
+            // Envia os dados para o json-server
+            const { data } = await api.post('/users', {
+                name: formData.name,
+                email: formData.email,
+                phone: formData.phone,
+                password: formData.password
             });
-            
 
-            if (data.length === 1) {
-                handleClickSignIn(); // Redireciona para o feed
-            } else {
-                alert('E-mail ou senha incorretos');
-            }
+            // Se a criação for bem-sucedida, redireciona para a página de login
+            alert('Cadastro realizado com sucesso!');
+            navigate('/login');
         } catch (error) {
-            console.error('Erro na requisição:', error);
-            alert('Houve um erro, tente novamente');
+            console.error('Erro ao cadastrar:', error);
+            alert('Houve um erro ao tentar cadastrar, tente novamente');
         }
     };
-    
-    const handleClickSignIn = () => {
-        navigate('/feed');
-    };
+
     const handleClickLogin = () => {
         navigate('/login');
     };
+
     const handleClickHome = () => {
         navigate('/home');
     };
-
-
 
     return (
         <>
@@ -75,7 +64,7 @@ const Cadastro = () => {
                 <Column>
                     <Wrapper>
                         <TitleLogin>Faça seu cadastro</TitleLogin>
-                        <SubtitleLogin>Preencha seu dados:</SubtitleLogin>
+                        <SubtitleLogin>Preencha seus dados:</SubtitleLogin>
                         <form onSubmit={handleSubmit(onSubmit)}>
                             <Input
                                 name="name"
