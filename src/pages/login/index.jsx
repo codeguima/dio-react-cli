@@ -1,4 +1,3 @@
-
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { MdEmail, MdLock } from 'react-icons/md';
@@ -10,34 +9,23 @@ import * as yup from "yup";
 import { Column, Container, CriarText, EsqueciText, Row, SubtitleLogin, Title, TitleLogin, Wrapper } from './styles';
 import { api } from '../../config/axios';
 
-
 const schema = yup.object({
     email: yup.string().email('E-mail não é válido').required('Campo Obrigatório'),
     password: yup.string().min(3, 'No mínimo 3 caracteres').required('Campo Obrigatório'),
 }).required();
 
-
-
 const Login = () => {
     const navigate = useNavigate();
-
     const { control, handleSubmit, formState: { errors, isValid } } = useForm({
         resolver: yupResolver(schema),
         mode: 'onChange',
     });
 
-    console.log(isValid, errors);
-
     const onSubmit = async formData => {
-
         try {
-
-            const { data } = await api.get(`/users?email=${formData.email}&senha=${formData.password}`,
-                {headers: { 'Content-Type': 'application/json' }
-            });
-
-
-            if (data.length === 1) {
+            const { data } = await api.post('/login', { email: formData.email, senha: formData.password });
+            
+            if (data.success) {
                 handleClickSignIn(); // Redireciona para o feed
             } else {
                 alert('E-mail ou senha incorretos');
@@ -47,7 +35,7 @@ const Login = () => {
             alert('Houve um erro, tente novamente');
         }
     };
-    
+
     const handleClickSignIn = () => {
         navigate('/feed');
     };
