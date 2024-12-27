@@ -26,7 +26,14 @@ const Cadastro = () => {
 
     const onSubmit = async formData => {
         try {
-            // Envia os dados para o json-server
+            // Verificar se o e-mail já está cadastrado
+            const { data: existingUser } = await api.get(`/users?email=${formData.email}`);
+            if (existingUser.length > 0) {
+                alert('Este e-mail já está cadastrado!');
+                return; // Não cria o novo usuário
+            }
+
+            // Se o e-mail não existir, cria um novo usuário
             const { data } = await api.post('/users', {
                 name: formData.name,
                 email: formData.email,
@@ -100,7 +107,7 @@ const Cadastro = () => {
                         </form>
                         <Row>
                             <EsqueciText onClick={handleClickHome}>voltar</EsqueciText>
-                            <CriarText onClick={handleClickLogin} >Fazer Login</CriarText>
+                            <CriarText onClick={handleClickLogin} >Fazer Login</CriText>
                         </Row>
                     </Wrapper>
                 </Column>
