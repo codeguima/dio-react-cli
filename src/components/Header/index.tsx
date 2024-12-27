@@ -20,7 +20,7 @@ import {
 const Header = () => {
   const navigate = useNavigate();
 
-  const { user } = useContext(AuthContext);
+  const { user, handleSignOut } = useContext(AuthContext);
 
 
   const handleClickLogin = () => {
@@ -31,9 +31,6 @@ const Header = () => {
     navigate('/cadastro');
   };
 
-  const handleClickConta = () => {
-    navigate('/feed');
-  };
 
   return (
     <Wrapper>
@@ -45,6 +42,7 @@ const Header = () => {
               style={{ width: '60px', height: 'auto' }} 
           />
           </Link>
+          
           {user.id ? (
             <>
               <BuscarInputContainer>
@@ -58,10 +56,10 @@ const Header = () => {
         <Row>
           {user.id ? (
             <>
+              <Link to="/feed">
               <UserPicture src= {hero} />
-              <br />
-                <Button title="Minha Conta" onClick={handleClickConta} />
-                <Button title="Sair" onClick={handleClickLogin} />
+              </Link>
+              <a href='/home' onClick={handleSignOut}>Sair</a>
             </>
           ) : (
             <>
