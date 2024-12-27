@@ -23,9 +23,11 @@ const Login = () => {
 
     const onSubmit = async formData => {
         try {
-            const { data } = await api.post('/login', { email: formData.email, senha: formData.password });
+            // Faz a requisição para obter os dados do usuário
+            const { data } = await api.get(`/users?email=${formData.email}&senha=${formData.password}`);
             
-            if (data.success) {
+            // Verifica se foi encontrado exatamente um usuário
+            if (data.length === 1) {
                 handleClickSignIn(); // Redireciona para o feed
             } else {
                 alert('E-mail ou senha incorretos');
