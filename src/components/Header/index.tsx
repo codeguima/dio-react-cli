@@ -1,8 +1,7 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '../Button';
-import { useContext } from 'react';
-import { AuthContext } from '../../context/auth';
+import { useAuth } from '../../hooks/useAuth';
 import logo from '../../assets/logo.png';
 import hero from '../../assets/hero-image.png';
 import { 
@@ -17,10 +16,11 @@ import {
 } from './styles';
 
 
+
 const Header = () => {
   const navigate = useNavigate();
 
-  const { user, handleSignOut } = useContext(AuthContext);
+  const { user, handleSignOut } = useAuth();
 
 
   const handleClickLogin = () => {
